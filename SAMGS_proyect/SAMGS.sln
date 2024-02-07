@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLogic", "BussinesLogic\BussinesLogic.csproj", "{3E018A71-95B9-4145-8214-BB141975C4A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelos", "..\Modelos\Modelos.csproj", "{990746F8-B31E-4E0F-8EB7-208CEC2AA4B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelos", "Modelos\Modelos.csproj", "{C16FDB54-2BAD-4180-9E64-083EA80B57B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{3E018A71-95B9-4145-8214-BB141975C4A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E018A71-95B9-4145-8214-BB141975C4A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E018A71-95B9-4145-8214-BB141975C4A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{990746F8-B31E-4E0F-8EB7-208CEC2AA4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{990746F8-B31E-4E0F-8EB7-208CEC2AA4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{990746F8-B31E-4E0F-8EB7-208CEC2AA4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{990746F8-B31E-4E0F-8EB7-208CEC2AA4B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16FDB54-2BAD-4180-9E64-083EA80B57B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16FDB54-2BAD-4180-9E64-083EA80B57B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16FDB54-2BAD-4180-9E64-083EA80B57B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16FDB54-2BAD-4180-9E64-083EA80B57B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

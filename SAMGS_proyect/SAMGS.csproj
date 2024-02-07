@@ -164,6 +164,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MScripts\Pruebaconet.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -2018,10 +2019,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Modelos\Modelos.csproj">
-      <Project>{990746f8-b31e-4e0f-8eb7-208cec2aa4b6}</Project>
-      <Name>Modelos</Name>
-    </ProjectReference>
     <ProjectReference Include="BussinesLogic\BussinesLogic.csproj">
       <Project>{3e018a71-95b9-4145-8214-bb141975c4a0}</Project>
       <Name>BussinesLogic</Name>
