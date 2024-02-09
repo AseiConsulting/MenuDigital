@@ -122,6 +122,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Utilerias\CatMenusController.cs" />
+    <Compile Include="Controllers\Utilerias\DepartamentosController.cs" />
+    <Compile Include="Controllers\Utilerias\MenuAccesoPerfilController.cs" />
+    <Compile Include="Controllers\Utilerias\MenuAccesoUsuarioController.cs" />
+    <Compile Include="Controllers\Utilerias\PerfilesController.cs" />
+    <Compile Include="Controllers\Utilerias\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -134,6 +140,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="dist\tree.js" />
+    <Content Include="dist\tree.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -153,6 +161,8 @@
     <Content Include="img\undraw_profile_2.svg" />
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
+    <Content Include="dist\tree.js.map" />
+    <Content Include="dist\tree.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -212,6 +222,7 @@
     <Content Include="vendor\jquery-easing\jquery.easing.compatibility.js" />
     <Content Include="vendor\jquery-easing\jquery.easing.js" />
     <Content Include="vendor\jquery-easing\jquery.easing.min.js" />
+    <Content Include="vendor\jquery\jquery-3.7.0.js" />
     <Content Include="vendor\jquery\jquery.js" />
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
@@ -1999,6 +2010,15 @@
     <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\Shared\_Layout_Footer.cshtml" />
+    <Content Include="Views\Shared\_Layout_Cabecera.cshtml" />
+    <Content Include="Views\Perfiles\Index.cshtml" />
+    <Content Include="Views\Departamentos\Index.cshtml" />
+    <Content Include="Views\MenuPerfil\Index.cshtml" />
+    <Content Include="Views\CatMenus\Index.cshtml" />
+    <Content Include="Views\MenuAccesoPerfil\Index.cshtml" />
+    <Content Include="Views\MenuAccesoUsuario\Index.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
