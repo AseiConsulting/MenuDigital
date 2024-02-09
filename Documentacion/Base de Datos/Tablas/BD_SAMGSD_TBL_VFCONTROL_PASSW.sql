@@ -1,0 +1,10 @@
+describe tbl_sistema_usuarios
+
+
+CREATE TABLE TBL_CONTROL_PASSWORD
+   (	ID NUMBER(10) NOT NULL ENABLE, 
+         USER_ID VARCHAR2(10 BYTE),
+         PASSWORD_ACTUAL  VARCHAR2(8 BYTE),
+         FAlta DATE DEFAULT SYSDATE,
+        CONSTRAINT fk_USER_ID FOREIGN KEY (USER_ID) REFERENCES tbl_sistema_usuarios(IUSERID));
+       
