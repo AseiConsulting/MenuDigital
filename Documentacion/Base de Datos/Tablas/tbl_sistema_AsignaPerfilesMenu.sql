@@ -11,6 +11,3 @@ FInactivo TIMESTAMP NULL
 );
 
 
-
-
-COMMIT;
