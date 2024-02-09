@@ -46,7 +46,11 @@ BEGIN
             FCambioPass         = DatFechaCambio,
             iCaducidad          = intCaduca,
             UAlta               = intUalta,  
-            Fmodificacion       = SYSDATE
+            Fmodificacion       = SYSDATE,
+            FBaja               = Case intActivo 
+                                        When 1 Then null
+                                        When 0 Then SYSDATE
+                                  end 
        WHERE iUserid = iUser;
 
     END IF;
