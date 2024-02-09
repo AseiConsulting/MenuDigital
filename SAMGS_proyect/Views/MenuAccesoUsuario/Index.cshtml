@@ -27,42 +27,95 @@
 <div id="content">
     @Html.Partial("_Layout_Cabecera")
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">Asignación de menú a Usuarios</h1>
+        <h1 class="h3 mb-2 text-gray-800">Asignación de menú a Perfiles</h1>
         <p class="mb-4">
-            En esta seccion, podra asignar los accesos a los usuarios 
+            En esta seccion, podra asignar los accesos a los Perfiles 
         </p>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        Usuarios
-                    </div>
-                    <div class="card-body col-sm-12">
-                        <!--Lista de usuarios-->
-                    </div>
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Perfil</th>
+                                <th>Sel</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>id</th>
+                                <th>Perfil</th>
+                                <th>Sel</th>
+
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Operaciones</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Riesgos</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Contabilidad</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Fideicomisos</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        Menu
-                    </div>
-                    <div class="card-body col-sm-12">
-                        <!--Lista de Menu-->
-                        <div class="container">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
 
     </div>
 </div>
+<div class="modal" id="clientesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
 
+                    <!--Menu-->
+                    
+                        <div class="card">
+                            <div class="card-header">
+                                Menu
+                            </div>
+                            <div class="card-body col-sm-12">
+                                <!--Lista de Menu-->
+                                <div class="container">
+                                </div>
+
+                            </div>
+                        </div>
+                    
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='AddUpPersona(this)'>Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         // prettier-ignore
