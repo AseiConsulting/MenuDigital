@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<script src="~/dist/tree.min.js"></script>
+<script type="text/javascript" src="~/vendor/jquery/jquery-3.7.0.js"></script>
+
+<script src="~/Scripts/MScripts/Pruebaconet.js"></script>
+<script src="~/js/demo/datatables-demo.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        agregaAlPrincipal();
+    });
+</script>
+
+@Styles.Render("~/Content/cssSAMGS")
+
+<div id="content">
+    @Html.Partial("_Layout_Cabecera")
+    <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">Asignación de menú a Usuarios</h1>
+        <p class="mb-4">
+            En esta seccion, podra asignar los accesos a los usuarios 
+        </p>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        Usuarios
+                    </div>
+                    <div class="card-body col-sm-12">
+                        <!--Lista de usuarios-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        Menu
+                    </div>
+                    <div class="card-body col-sm-12">
+                        <!--Lista de Menu-->
+                        <div class="container">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+    <script>
+        // prettier-ignore
+        let data = [{ "id": "0", "text": "node-0", "children": [{ "id": "0-0", "text": "node-0-0", "children": [{ "id": "0-0-0", "text": "node-0-0-0" }, { "id": "0-0-1", "text": "node-0-0-1" }, { "id": "0-0-2", "text": "node-0-0-2" }] }, { "id": "0-1", "text": "node-0-1", "children": [{ "id": "0-1-0", "text": "node-0-1-0" }, { "id": "0-1-1", "text": "node-0-1-1" }, { "id": "0-1-2", "text": "node-0-1-2" }] }, { "id": "0-2", "text": "node-0-2", "children": [{ "id": "0-2-0", "text": "node-0-2-0" }, { "id": "0-2-1", "text": "node-0-2-1" }, { "id": "0-2-2", "text": "node-0-2-2" }] }] }, { "id": "1", "text": "node-1", "children": [{ "id": "1-0", "text": "node-1-0", "children": [{ "id": "1-0-0", "text": "node-1-0-0" }, { "id": "1-0-1", "text": "node-1-0-1" }, { "id": "1-0-2", "text": "node-1-0-2" }] }, { "id": "1-1", "text": "node-1-1", "children": [{ "id": "1-1-0", "text": "node-1-1-0" }, { "id": "1-1-1", "text": "node-1-1-1" }, { "id": "1-1-2", "text": "node-1-1-2" }] }, { "id": "1-2", "text": "node-1-2", "children": [{ "id": "1-2-0", "text": "node-1-2-0" }, { "id": "1-2-1", "text": "node-1-2-1" }, { "id": "1-2-2", "text": "node-1-2-2" }] }] }, { "id": "2", "text": "node-2", "children": [{ "id": "2-0", "text": "node-2-0", "children": [{ "id": "2-0-0", "text": "node-2-0-0" }, { "id": "2-0-1", "text": "node-2-0-1" }, { "id": "2-0-2", "text": "node-2-0-2" }] }, { "id": "2-1", "text": "node-2-1", "children": [{ "id": "2-1-0", "text": "node-2-1-0" }, { "id": "2-1-1", "text": "node-2-1-1" }, { "id": "2-1-2", "text": "node-2-1-2" }] }, { "id": "2-2", "text": "node-2-2", "children": [{ "id": "2-2-0", "text": "node-2-2-0" }, { "id": "2-2-1", "text": "node-2-2-1" }, { "id": "2-2-2", "text": "node-2-2-2" }] }] }]
+
+        let tree = new Tree('.container', {
+            data: [{ id: '-1', text: 'root', children: data }],
+            closeDepth: 3,
+            loaded: function () {
+                this.values = ['0-0-0', '0-1-1'];
+                console.log(this.selectedNodes);
+                console.log(this.values);
+                this.disables = ['0-0-0', '0-0-1', '0-0-2']
+            },
+            onChange: function () {
+                console.log(this.values);
+            }
+        })
+    </script>
+
+
