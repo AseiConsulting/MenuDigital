@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<script type="text/javascript" src="~/vendor/jquery/jquery-3.7.0.js"></script>
+
+<script src="~/Scripts/MScripts/Pruebaconet.js"></script>
+<script src="~/js/demo/datatables-demo.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        agregaAlPrincipal();
+    });
+</script>
+
+@Styles.Render("~/Content/cssSAMGS")
+
+<div id="content">
+    @Html.Partial("_Layout_Cabecera")
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Catalogo de empleados</h1>
+        <p class="mb-4">
+            En esta seccion, podra dar de alta los departamentos existentes en su empresa
+            <!--<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.-->
+        </p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <button type='button' class='btn btn-success' data-toggle='modal' data-target='#clientesModal' onclick='limpiadatos(this)'>Agregar Empleado</button>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>iD</th>
+                                <th>ID Empleado</th>
+                                <th>Sel</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th> ID Empleado</th>
+                                <th>Sel</th>
+
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Leonardo</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Luis</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Fernando</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Yael</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Jose</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Ricardo</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Alberto</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Miguel</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Carlos</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Julian</td>
+                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+<div class="modal" id="clientesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Catálogo de Empleados</h6>
+                        </div>
+                        <div class="form-group row ">
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="txtRFC" data-value="txtrfc"
+                                               placeholder="id Empleado" maxlength="13">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="sDescripcion"
+                                               placeholder="Nombre">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="sDescripcion"
+                                               placeholder="Apellido Paterno">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Apellido Materno">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Departamento">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Area">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Dirección">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Telefono">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Celular">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="Email">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="ID Empleado local">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
+                                               placeholder="ID Empleado global">
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <!--</div>-->
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='AddDepto(this)'>Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
