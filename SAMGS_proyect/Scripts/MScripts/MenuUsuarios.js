@@ -27,7 +27,8 @@
                         response.data[i].bActivo,
                         response.data[i].iCaducidad,
                         response.data[i].iEsEmp,
-                        "<button type='button' class='btn btn-success btn-circle btn-sm fas fa-check' data-toggle='modal' data-target='#usuariosModal' onclick='regresadatos(this)'></button>"
+                        //"<button type='button' class='btn btn-success btn-circle btn-sm fas fa-check' data-toggle='modal' data-target='#usuariosModal' onclick='regresadatos(this)'></button>"
+                        "<a data-toggle='modal' data-target='#usuariosModal' onclick = 'regresadatos(this)' class= 'btn btn-success' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'></span></a >"
                     ])
                     .draw(false);
 
@@ -232,3 +233,67 @@ function limpiadatos(button) {
     if (txtInactivo == 1) { $("#CheckEstatus").prop('checked', true) }
     else { $("#CheckEstatus").prop('checked', false) };
 }
+
+function catPerfil(number) {
+    //var cmblst = document.getElementById('cmbPerfil');
+    var i = 1;
+    $.ajax({
+        url: "/Usuarios/listarCatalogo",
+        data: {
+            "id": 1
+        },
+        type: 'GET',
+        dataType: 'Json',
+        success: function (response) {
+            $("#cmbPerfiles")
+                .empty()
+                .append($("<option></option>")
+                    .val("0")
+                    .html("Seleccione Perfil:"));
+            for (var i = 0; i < response.Data.data.length; i++) {
+                $("#cmbPerfiles").append($("<option></option>")
+                    .val(i)
+                    .html(response.Data.data[i].descripcion));
+            };
+        },
+        error: function (jqXHR, status, error) {
+            alert('Hay un error al cargar los datos de perfiles');
+        },
+        complete: function (jqXHR, status) {
+        }
+    });
+
+};
+
+function catDeptos(number) {
+    var cmblst = document.getElementById('cmbDeptos');
+    var i = 1;
+    $.ajax({
+        url: "/Usuarios/listarCatalogo",
+        data: { "id":2},
+        type: 'GET',
+        dataType: 'Json',
+        success: function (response) {
+
+            $("#cmbDeptos")
+                .empty()
+                .append($("<option></option>")
+                    .val("0")
+                    .html("Seleccione Departamento:"));
+
+
+            for (var i = 0; i < response.Data.data.length; i++) {
+
+                $("#cmbDeptos").append($("<option></option>")
+                    .val(i)
+                    .html(response.Data.data[i].descripcion));
+            };
+        },
+        error: function (jqXHR, status, error) {
+            alert('Hay un error al cargar los datos de departamentos');
+        },
+        complete: function (jqXHR, status) {
+        }
+    });
+
+};
