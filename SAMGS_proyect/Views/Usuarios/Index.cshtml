@@ -11,13 +11,16 @@
 <meta name="author" content="">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-<script src="~/Scripts/MScripts/Pruebaconet.js"></script>
-<script src="~/js/demo/datatables-demo.js"></script>
+
+
+<script src="~/Scripts/MScripts/MenuUsuarios.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
-        agregaAlPrincipal();
+        obtenerPersona();
+        ObtenerEmpleados();
     });
 </script>
 
@@ -28,10 +31,9 @@
 
     <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Departamentos</h1>
+        <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
         <p class="mb-4">
-            En esta seccion, podra dar de alta los departamentos existentes en su empresa
-            <!--<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.-->
+            En esta seccion, podra dar de alta los usuarios del sistema
         </p>
 
         <!-- DataTales Example -->
@@ -39,76 +41,45 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <button type='button' class='btn btn-success' data-toggle='modal' data-target='#clientesModal' onclick='limpiadatos(this)'>Agregar Usuario</button>
+                    <button type='button' class='btn btn-success' data-toggle='modal' data-target='#usuariosModal' onclick='limpiadatos(this)'>Agregar Usuario</button>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Nombre de Usuario</th>
+                                <th>Usuario</th>
+                                <th>UserName</th>
+                                <th>Usuario Corporativo</th>
+                                <th>PerfilId</th>
+                                <th>Departamento</th>
+                                <th>Pasword</th>
+                                <th>PreguntaSecreta</th>
+                                <th>RespuestaSecreta</th>
+                                <th>Estatus</th>
+                                <th>CaducaUsuario</th>
+                                <th>Empleado</th>
                                 <th>Sel</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>id</th>
-                                <th>Nombre de Usuario</th>
+                                <th>Usuario</th>
+                                <th>UserName</th>
+                                <th>Usuario Corporativo</th>
+                                <th>PerfilId</th>
+                                <th>Departamento</th>
+                                <th>Pasword</th>
+                                <th>PreguntaSecreta</th>
+                                <th>RespuestaSecreta</th>
+                                <th>Estatus</th>
+                                <th>CaducaUsuario</th>
+                                <th>Empleado</th>
                                 <th>Sel</th>
 
                             </tr>
                         </tfoot>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Operaciones</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Riesgos</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Contabilidad</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Fideicomisos</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Departamento 7</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Departamento 8</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Departamento 9</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Departamento 10</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>Departamento 11</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>Departamento 12</td>
-                                <td> <button type='button' class='btn btn-success btn-primary ' data-toggle='modal' data-target='#clientesModal' onclick='regresadatos(this)'></button></td>
-                            </tr>
+                            <!--inserto datos-->
 
                         </tbody>
                     </table>
@@ -121,7 +92,7 @@
 
 </div>
 
-<div class="modal" id="clientesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="usuariosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -135,33 +106,66 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Datos del Usuario</h6>
                         </div>
                         <div class="form-group row ">
                             <div class="card-body">
-                                <form>
+                                <form id=" miForm">
                                     <div class="mb-3">
                                         <input type="text" class="form-control form-control-user" id="txtId" data-value="txtid"
-                                               placeholder="User ID" maxlength="13">
+                                               placeholder="User ID" disabled="true">
                                     </div>
-                                    <div></div>
 
                                     <div class="mb-3">
                                         <input type="text" class="form-control form-control-user" id="txtNom"
-                                               placeholder="Nombre">
+                                               placeholder="Nombre de usuario">
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="idCheck" data-toggle='modal' data-target='#EmpleadosModal'>
+                                            <label class="form-check-label" for="idCheck">
+                                                Es empleado
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtPerfilId "
-                                               placeholder="Perfil">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="CheckCadu" data-toggle='modal'>
+                                            <label class="form-check-label" for="CheckCad">
+                                                Caduca Contraseña
+                                            </label>
+                                        </div>
                                     </div>
 
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="CheckEstatus" data-toggle='modal'>
+                                            <label class="form-check-label" for="CheckEstatus">
+                                                Estatus
+                                            </label>
+                                        </div>
+                                    </div>
 
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="txtUserCorp"
+                                               placeholder="Usuario Corporativo">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="txtUserName"
+                                               placeholder="Usuario">
+                                    </div>
                                     <div class="mb-3">
                                         <input type="password" class="form-control form-control-user" id="txtPassword"
                                                placeholder="Password">
                                     </div>
-
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="txtPerfilId"
+                                               placeholder="Perfil">
+                                    </div>
                                     <div class="mb-3">
                                         <input type="text" class="form-control form-control-user" id="txtidDepto"
                                                placeholder="Departamento">
@@ -177,17 +181,7 @@
                                                placeholder="Respuesta">
                                     </div>
 
-                                 
-                                    <div class="mb-3">
-                                        <input type="date" class="form-control form-control-user" id="dtiCaducidad"
-                                               placeholder="Caducidad">
-                                    </div>
 
-
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtInactivo"
-                                               placeholder="Estatus">
-                                    </div>
                                 </form>
 
                             </div>
@@ -200,9 +194,115 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='AddUpPersona(this)'>Guardar</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='validarDatos(this)'>Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal" id="EmpleadosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="tableEmpleado" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Nombre</th>
+                                            <th>Sel</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Nombre de Empleado</th>
+                                            <th>Sel</th>
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    table {
+        border: 3px dashed goldenrod;
+    }
+        
+        table tr td:nth-child(3), table tr th:nth-child(3) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(4), table tr th:nth-child(4) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(5), table tr th:nth-child(5) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(6), table tr th:nth-child(6) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(7), table tr th:nth-child(7) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(8), table tr th:nth-child(8) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(9), table tr th:nth-child(9) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        
+        table tr td:nth-child(10), table tr th:nth-child(10) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+       
+        table tr td:nth-child(11), table tr th:nth-child(11) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+        table tr td:nth-child(12), table tr th:nth-child(12) {
+            border: 1px dashed darkgreen;
+            display: none;
+        }
+    
+    
+</style>
