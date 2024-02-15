@@ -12,15 +12,16 @@ namespace Modelos.Models
 
             public int iUserID { get; set; }
             public string vchidUserCorp { get; set; }
+            public string VCHUSUARIO { get; set; }
             public string sUserName { get; set; }
             public string sPasword { get; set; }
-            public int iPerfilId { get; set; }
-            public int idDepto { get; set; }
-            public string sPreguntaSecreta { get; set; }
-            public string sRespuestaSecreta { get; set; }
+            public string iPerfilId { get; set; }
+            public string idDepto { get; set; }
+            public string Email { get; set; }
             public int bActivo { get; set; }
             public int iCaducidad { get; set; }
             public int iEsEmp { get; set; }
+            public int iUsuarioAlta { get; set; }
         }
 
     }
