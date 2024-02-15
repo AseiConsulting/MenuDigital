@@ -35,7 +35,7 @@ namespace SAMGS.Controllers
         [HttpGet]
         public JsonResult UpdateAddUser(MenuAccsUsr usuario)
         {
-            var Parametros = new object[] {usuario.iUserID, usuario.VCHUSUARIO,usuario.vchidUserCorp,usuario.sUserName,usuario.sPasword,usuario.iPerfilId,usuario.idDepto,usuario.sPreguntaSecreta,usuario.sRespuestaSecreta,usuario.bActivo,usuario.iCaducidad,usuario.iEsEmp,Session["idUsuario"]};
+            var Parametros = new object[] {usuario.iUserID, usuario.VCHUSUARIO,usuario.vchidUserCorp,usuario.sUserName,usuario.sPasword,usuario.iPerfilId,usuario.idDepto,usuario.Email,usuario.bActivo,usuario.iCaducidad,usuario.iEsEmp,Session["idUsuario"]};
             //Mandamos a traer los datos del repositorio que enviará en formato JSON
             var Datos = CatUsuarios.BSLUpadduSER(usuario);
             var jsonResult = Json(new { success = true, data = Datos }, "application/json", System.Text.Encoding.UTF8, JsonRequestBehavior.AllowGet);
