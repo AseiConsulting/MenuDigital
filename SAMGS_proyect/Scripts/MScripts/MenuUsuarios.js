@@ -22,8 +22,7 @@
                         response.data[i].iPerfilId,
                         response.data[i].idDepto,
                         response.data[i].sPasword,
-                        response.data[i].sPreguntaSecreta,
-                        response.data[i].sRespuestaSecreta,
+                        response.data[i].Email,
                         response.data[i].bActivo,
                         response.data[i].iCaducidad,
                         response.data[i].iEsEmp,
@@ -92,8 +91,7 @@ function regresadatos(button) {
     var txtPerfilId;
     var txtPassword;
     var txtidDepto;
-    var txtisPreguntaSecreta;
-    var txtisRespuestaSecreta;
+    var email;
     var iCaducidad;
     var txtInactivo;
     var txtUserCorp;
@@ -110,23 +108,50 @@ function regresadatos(button) {
         txtPerfilId = $(this).find("td:eq(4)").text();
         txtidDepto = $(this).find("td:eq(5)").text();
         txtPassword = $(this).find("td:eq(6)").text();
-        txtisPreguntaSecreta = $(this).find("td:eq(7)").text();
-        txtisRespuestaSecreta = $(this).find("td:eq(8)").text();
-        txtInactivo = $(this).find("td:eq(9)").text();
-        iCaducidad = $(this).find("td:eq(10)").text();
-        flexCheck = $(this).find("td:eq(11)").text();
+        email = $(this).find("td:eq(7)").text();
+        txtInactivo = $(this).find("td:eq(8)").text();
+        iCaducidad = $(this).find("td:eq(9)").text();
+        iEsEmpleado = $(this).find("td:eq(10)").text();
+
+        // creamos un variable que hace referencia al select de perfiles
+        var datPerfil = document.getElementById("cmbPerfiles");
+        // obtenemos el valor a buscar en este caso el perfil
+        var buscar = txtPerfilId;
+        // recorremos todos los valores del select
+        for (var i = 1; i < datPerfil.length; i++) {
+            //busco el valor concidente
+            if (datPerfil[i].text == buscar) {
+                // seleccionamos el valor que coincide
+                datPerfil.selectedIndex = i-1;
+                $('#cmbPerfiles').val(i).trigger('change')
+                $("#cmbPerfiles").change;
+            }
+        }
+
+        // creamos un variable que hace referencia al select de Departamentos
+        var datDepto = document.getElementById("cmbDeptos");
+        // obtenemos el valor a buscar en este caso el departamento
+        var buscar = txtidDepto;
+        // recorremos todos los valores del select
+        for (var i = 1; i < datDepto.length; i++) {
+            //busco el valor concidente
+            if (datDepto[i].text == buscar) {
+                // seleccionamos el valor que coincide
+                datDepto.selectedIndex = i;
+                $('#cmbDeptos').val(i).trigger('change')
+                $("#cmbDeptos").change;
+            }
+        }
+
 
         $("#txtId").val(txtid);
         $("#txtNom").val(nombreUsuario);
         $("#txtUserName").val(txtNom);
         $("#txtUserCorp").val(txtUserCorp);
-        $("#txtPerfilId").val(txtPerfilId);
-        $("#txtidDepto").val(txtidDepto);
-        $("#txtPassword").val(txtPassword);
-        $("#txtisPreguntaSecreta").val(txtisPreguntaSecreta);
-        $("#txtisRespuestaSecreta").val(txtisRespuestaSecreta);
+         $("#txtPassword").val(txtPassword);
+        $("#txtEmail").val(email);
         $("#txtInactivo").val(txtInactivo);
-        if (flexCheck == 1)
+        if (iEsEmpleado == 1)
         { $("#idCheck").prop('checked', true) }
         else
         { $("#idCheck").prop('checked', false) };
@@ -153,20 +178,28 @@ function regresadatosEmp(button) {
 //valido datos para guardar informacion
 function validarDatos() {
     var opcion = confirm("Desea Guardar los cambios?");
+    var check_Emp = 0;
+    var i_Caducidad = 0;
+    var i_inactivo = 0;
+
+    var datos = document.getElementById("cmbPerfiles");
+    var selected = datos.options[datos.selectedIndex].text;
+
+    var datosDepto = document.getElementById("cmbDeptos");
+    var selDepto = datosDepto.options[datosDepto.selectedIndex].text;
+
     if (opcion == true) {
         id = $("#txtId").val();
         nuser = $("#txtUserName").val();
         NomUser = $("#txtNom").val();
         userCorp =  $("#txtUserCorp").val();
-        PerfilID = $("#txtPerfilId").val();
-        idDepto=$("#txtidDepto").val();
+        PerfilID = selected;
+        idDepto = selDepto;
         password = $("#txtPassword").val();
-        PreguntaSecreta=$("#txtisPreguntaSecreta").val();
-        RespuestaSecreta = $("#txtisRespuestaSecreta").val();
-        checkEmp = $("#idCheck").val();
-        iCaducidad = $("#CheckCadu").val();
-        inactivo = $("#CheckEstatus").val();
-
+        vctCorreo = $("#txtEmail").val();
+        if (document.getElementById('idCheck').checked) {check_Emp = 1;};
+        if (document.getElementById('CheckCadu').checked) {i_Caducidad = 1;};
+        if (document.getElementById('CheckEstatus').checked) {i_inactivo = 1;};
         $.ajax({
             url: '/Usuarios/UpdateAddUser', //le envio el dato del evento en el controles que va a ejecutar
             data: {
@@ -177,11 +210,10 @@ function validarDatos() {
                 "sPasword": password,
                 "iPerfilId": PerfilID,
                 "idDepto":idDepto,
-                "sPreguntaSecreta":PreguntaSecreta,
-                "sRespuestaSecreta":RespuestaSecreta,
-                "bActivo" : inactivo,
-                "iCaducidad" : iCaducidad,
-                "iEsEmp": checkEmp
+                "Email": vctCorreo,
+                "bActivo": i_inactivo,
+                "iCaducidad": i_Caducidad,
+                "iEsEmp": check_Emp
 
             },
             type: 'GET',
@@ -250,10 +282,10 @@ function catPerfil(number) {
                 .append($("<option></option>")
                     .val("0")
                     .html("Seleccione Perfil:"));
-            for (var i = 0; i < response.Data.data.length; i++) {
+            for (var i = 0; i < response.data.length; i++) {
                 $("#cmbPerfiles").append($("<option></option>")
                     .val(i)
-                    .html(response.Data.data[i].descripcion));
+                    .html(response.data[i].descripcion));
             };
         },
         error: function (jqXHR, status, error) {
@@ -282,11 +314,11 @@ function catDeptos(number) {
                     .html("Seleccione Departamento:"));
 
 
-            for (var i = 0; i < response.Data.data.length; i++) {
+            for (var i = 0; i < response.data.length; i++) {
 
                 $("#cmbDeptos").append($("<option></option>")
                     .val(i)
-                    .html(response.Data.data[i].descripcion));
+                    .html(response.data[i].descripcion));
             };
         },
         error: function (jqXHR, status, error) {
