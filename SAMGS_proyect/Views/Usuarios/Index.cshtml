@@ -13,8 +13,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-
-
 <script src="~/Scripts/MScripts/MenuUsuarios.js"></script>
 <script type="text/javascript">
 
@@ -54,8 +52,7 @@
                                 <th>PerfilId</th>
                                 <th>Departamento</th>
                                 <th>Pasword</th>
-                                <th>PreguntaSecreta</th>
-                                <th>RespuestaSecreta</th>
+                                <th>Email</th>
                                 <th>Estatus</th>
                                 <th>CaducaUsuario</th>
                                 <th>Empleado</th>
@@ -71,8 +68,7 @@
                                 <th>PerfilId</th>
                                 <th>Departamento</th>
                                 <th>Pasword</th>
-                                <th>PreguntaSecreta</th>
-                                <th>RespuestaSecreta</th>
+                                <th>Email</th>
                                 <th>Estatus</th>
                                 <th>CaducaUsuario</th>
                                 <th>Empleado</th>
@@ -152,22 +148,19 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtUserCorp"
-                                               placeholder="Usuario Corporativo">
+                                        <input type="text" class="form-control form-control-user" id="txtUserCorp"placeholder="Usuario Corporativo">
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtUserName"
-                                               placeholder="Usuario">
+                                        <input type="text" class="form-control form-control-user" id="txtUserName"placeholder="Usuario">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="password" class="form-control form-control-user" id="txtPassword"
-                                               placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" id="txtPassword"placeholder="Password">
                                     </div>
                                     <div class="mb-3">
                                         @*<input type="text" class="form-control form-control-user" id="txtPerfilId" placeholder="Perfil">*@
                                         <select class="form-select form-control form-control-user" aria-label="Default select example" id="cmbPerfiles">
-                                        <!--datos del perfil-->
+                                            <!--datos del perfil-->
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -179,15 +172,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtisPreguntaSecreta"
-                                               placeholder="Pregunta">
+                                        <input type="text" class="form-control form-control-user " id="txtEmail" placeholder="Correo Electronico">
                                     </div>
-
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtisRespuestaSecreta"
-                                               placeholder="Respuesta">
-                                    </div>
-
 
                                 </form>
 
@@ -206,7 +192,7 @@
         </div>
     </div>
 </div>
-
+<!--
 <div class="modal" id="EmpleadosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -217,41 +203,41 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                   
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
 
-                                             DataTales Example 
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="tableEmpleado" width="100%" cellspacing="0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>id</th>
-                                                            <th>Nombre</th>
-                                                            <th>Sel</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>id</th>
-                                                            <th>Nombre de Empleado</th>
-                                                            <th>Sel</th>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        
-                                    
-                                    
+                                    DataTales Example
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="tableEmpleado" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Nombre</th>
+                                                    <th>Sel</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Nombre de Empleado</th>
+                                                    <th>Sel</th>
+
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+
+
+
                             </div>
                         </div>
+                    </div>
 
                 </div>
             </div>
@@ -260,61 +246,57 @@
             </div>
         </div>
     </div>
-</div>
+</div>    
+-->
+
 
 <style type="text/css">
     table {
         border: 3px dashed goldenrod;
     }
-        
+
         table tr td:nth-child(3), table tr th:nth-child(3) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(4), table tr th:nth-child(4) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(5), table tr th:nth-child(5) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(6), table tr th:nth-child(6) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(7), table tr th:nth-child(7) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(8), table tr th:nth-child(8) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(9), table tr th:nth-child(9) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        
+
         table tr td:nth-child(10), table tr th:nth-child(10) {
             border: 1px dashed darkgreen;
             display: none;
         }
-       
+
         table tr td:nth-child(11), table tr th:nth-child(11) {
             border: 1px dashed darkgreen;
             display: none;
         }
-        table tr td:nth-child(12), table tr th:nth-child(12) {
-            border: 1px dashed darkgreen;
-            display: none;
-        }
-    
-    
 </style>
