@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<script type="text/javascript" src="~/vendor/jquery/jquery-3.7.0.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+<script src="~/Scripts/MScripts/MenuArea.js"></script>
+<script src="~/js/demo/datatables-demo.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        obtenerArea();
+
+    });
+</script>
+
+@Styles.Render("~/Content/cssSAMGS")
+
+<div id="content">
+    @Html.Partial("_Layout_Cabecera")
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Departamentos</h1>
+        <p class="mb-4">
+            En esta seccion, podra dar de alta las areas existentes en su empresa
+            <!--<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.-->
+        </p>
+       
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <button type='button' class='btn btn-success' data-toggle='modal' data-target='#areaModal' onclick='limpiadatos(this)'>Agregar Area</button>
+                    <table class="table table-bordered" id="tablaArea" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Id Area</th>
+                                <th>Depto</th>
+                                <th>Nombre Area</th>
+                                <th>Sel</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Id Area</th>
+                                <th>Depto</th>
+                                <th>Nombre Area</th>
+                                <th>Sel</th>
+
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+<div class="modal" id="areaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row ">
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-user" id="txtIdArea" data-value="txtIdArea"
+                                       placeholder="id Area" disabled="true">
+                            </div>
+                            <div></div>
+
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-user" id="txtdptoa"
+                                       placeholder="Depto">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-user" id="txtdesc"
+                                       placeholder="Descripcion">
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='AgregArea(this)'>Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
