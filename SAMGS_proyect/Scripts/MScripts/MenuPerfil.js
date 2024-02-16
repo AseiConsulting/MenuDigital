@@ -1,0 +1,100 @@
+﻿function obtenerPerfil() {
+    agregaAlPrincipal();
+    const tabla = new DataTable('#dataTable');
+    let counter = 1;
+
+    $.ajax({
+        url: '/Perfil/LstPerfiles',
+        type: 'GET',
+        data: {
+        },
+
+        dataType: 'json',
+        success: function (response) {
+            var perfiles = JSON.stringify(response);
+            for (var i = 0; i < response.data.length; i++) {
+                tabla.row
+                    .add([
+                        response.data[i].idPerfil,
+                        response.data[i].pfdescripcion,
+                        "<button type='button' class='btn btn-success btn-circle btn-sm fas fa-check' data-toggle='modal' data-target='#perfilesModal' onclick='mostdatPerfil(this)'></button>"
+                    ])
+                    .draw(false);
+
+                counter++;
+
+            }
+        },
+        error: function (jqXHR, status, error) {
+            alert('Hay un error al cargar los datos');
+        },
+        complete: function (jqXHR, status) {
+        }
+    });
+
+}
+
+function agregaAlPrincipal() {
+    var elemento = document.getElementById('content');
+    $("#content-wrapper").append(elemento);
+}
+
+
+//Carga datos al selcionar el grid
+function mostdatDepto(button) {
+    var txtidperfil;
+    var txtNompf;
+
+
+    $("table tbody tr").click(function () {
+        txtidperfil = $(this).find("td:eq(0)").text();
+        Descripcion = $(this).find("td:eq(1)").text();
+
+
+        $("#txtidperfil").val(txtidperfil);
+        $("#txtdescrippf").val(Descripcion);
+
+
+    });
+};
+
+
+function AgregPerf() {
+    var opcion = confirm("Desea Guardar los cambios?");
+    var iddepto = 0;
+    var descripcion = "";
+
+
+    if (opcion == true) {
+        iddepto = $("#txtiddepto").val();
+        descripcion = $("#txtdescripcion").val();
+
+        $.ajax({
+            url: '/Deptos/updateDeptos', //le envio el dato del evento en el controles que va a ejecutar
+            data: {
+                "idDepto": iddepto,
+                "ddescripcion": descripcion,
+
+            },
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+
+                alert('Los datos se guardaron correctamente');
+            },
+            error: function (jqXHR, status, error) {
+                alert('Disculpe, existió un problema en el guardado de datos');
+            },
+            complete: function (jqXHR, status) {
+            }
+
+        });
+
+    };
+};
+function limpiadatos() {
+    var txtiddepto = "";
+    var txtNom = "";
+    $("#txtiddepto").val(txtiddepto);
+    $("#txtdescripcion").val(txtNom);
+};
