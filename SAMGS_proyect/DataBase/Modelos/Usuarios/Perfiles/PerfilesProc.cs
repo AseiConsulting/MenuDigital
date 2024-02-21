@@ -21,7 +21,7 @@ namespace DataBase.Modelos.Perfiles
             {
                 try
                 {
-                    OracleCommand cmd = new OracleCommand("select  IPERFILID ,DESCRIPCION from tbl_cat_perfil ", cnn);
+                    OracleCommand cmd = new OracleCommand("select  IPERFILID ,descripcionpf from tbl_cat_perfil ", cnn);
 
                     cnn.Open();
                     OracleDataReader rd = cmd.ExecuteReader();
@@ -32,7 +32,7 @@ namespace DataBase.Modelos.Perfiles
                         _lstPerf.Add(new Perfil()
                         {
                             idPerfil = Convert.ToInt32(rd["IPERFILID"]),
-                            pfdescripcion = rd["DESCRIPCION"].ToString(),
+                            pfdescripcion = rd["descripcionpf"].ToString(),
 
 
                         });
@@ -65,7 +65,7 @@ namespace DataBase.Modelos.Perfiles
                 try
                 {
                     OracleCommand cmd = new OracleCommand("sp_updadd_Perfil", cnn);
-                    cmd.Parameters.Add("id_pfil", lstPerfil.idPerfil);
+                    cmd.Parameters.Add("iperfilid", lstPerfil.idPerfil);
                     cmd.Parameters.Add("pf_descrip", lstPerfil.pfdescripcion);
 
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;

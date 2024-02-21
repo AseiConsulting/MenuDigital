@@ -23,7 +23,7 @@ namespace DataBase.Modelos.Empleados
             {
                 try
                 {
-                    OracleCommand cmd = new OracleCommand("select  ID_CONS ,CTA_USU_LOCAL,NOMBRE,APATERNO,APMATERNO,EDEPTO,EAREA,DIRECCION,TELEFONO,CELULAR,EMAIL,CTA_USU_GLOBAL from tbl_cat_empleados ", cnn);
+                    OracleCommand cmd = new OracleCommand("SELECT a.ID_CONS ,a.CTA_USU_LOCAL,a.NOMBRE,a.APATERNO,a.APMATERNO,b.ID_DEPTO||'-'||b.DESCRIPCION DESCRIPCION,a.DIRECCION,a.TELEFONO,a.CELULAR,a.EMAIL,a.CTA_USU_GLOBAL FROM tbl_cat_empleados a JOIN tbl_cat_departamento b ON EDEPTO=ID_DEPTO ", cnn);
 
                     cnn.Open();
                     OracleDataReader rd = cmd.ExecuteReader();
@@ -38,8 +38,8 @@ namespace DataBase.Modelos.Empleados
                             nombre = rd["NOMBRE"].ToString(),
                             appat = rd["APATERNO"].ToString(),
                             apmat = rd["APMATERNO"].ToString(),
-                            edepto = Convert.ToInt32(rd["EDEPTO"]),
-                            earea = Convert.ToInt32(rd["EAREA"]),
+                            //edepto = Convert.ToInt32(rd["v_searchDepto"]),
+                            emdepto = rd["DESCRIPCION"].ToString(),
                             direcc = rd["DIRECCION"].ToString(),
                             tel = rd["TELEFONO"].ToString(),
                             cel = rd["CELULAR"].ToString(),
@@ -66,8 +66,6 @@ namespace DataBase.Modelos.Empleados
             }
         }
 
-
-
         public static bool UpdateADDEmpl(Empleado lstdempl)
         {
             DataTable oDt = new DataTable();
@@ -82,8 +80,7 @@ namespace DataBase.Modelos.Empleados
                     cmd.Parameters.Add("i_nombre", lstdempl.nombre);
                     cmd.Parameters.Add("i_apPate", lstdempl.appat);
                     cmd.Parameters.Add("i_apmater", lstdempl.apmat);
-                    cmd.Parameters.Add("i_edepti", lstdempl.edepto);
-                    cmd.Parameters.Add("i_earea", lstdempl.earea);
+                    cmd.Parameters.Add("edepto", lstdempl.emdepto);
                     cmd.Parameters.Add("i_direccion", lstdempl.direcc);
                     cmd.Parameters.Add("i_telef", lstdempl.tel);
                     cmd.Parameters.Add("i_celul", lstdempl.cel);
@@ -109,8 +106,7 @@ namespace DataBase.Modelos.Empleados
 
         }
 
-
-
+       
 
     }
 }
