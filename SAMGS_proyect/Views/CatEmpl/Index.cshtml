@@ -14,16 +14,19 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 
-<script src="~/Scripts/MScripts/MenuDepto.js"></script>
+<script src="~/Scripts/MScripts/MenuEmpl.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
+        obtenerEmpl();
         obtenerDepto();
 
     });
-</script>
+
+    var mostrarValor = function (x) { document.getElementById('txtempdepto').value = x; }
 
 </script>
+
 
 @Styles.Render("~/Content/cssSAMGS")
 
@@ -34,7 +37,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Catalogo de empleados</h1>
         <p class="mb-4">
-            En esta seccion, podra dar de alta los departamentos existentes en su empresa
+            En esta seccion, podra dar de alta los empleados existentes de su empresa
             <!--<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.-->
         </p>
 
@@ -43,8 +46,8 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <button type='button' class='btn btn-success' data-toggle='modal' data-target='#emplModal' onclick='limpiadatos(this)'>Agregar Departamento</button>
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <button type='button' class='btn btn-success' data-toggle='modal' data-target='#emplModal' onclick='limpiadatos(this)'>Agregar Empleado</button>
+                    <table class="table table-bordered" id="dtbEmpl" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id Empleado</th>
@@ -52,6 +55,11 @@
                                 <th>Nombre Empleado</th>
                                 <th>Apellido Paterno</th>
                                 <th>Apellido Materno</th>
+                                <th>Departamento</th>
+                                <th>Direccion</th>
+                                <th>Telefono</th>
+                                <th>Celular</th>
+                                <th>Correo</th>
                                 <th>Cta Global Empl</th>
                                 <th>Sel</th>
                             </tr>
@@ -63,6 +71,11 @@
                                 <th>Nombre Empleado</th>
                                 <th>Apellido Paterno</th>
                                 <th>Apellido Materno</th>
+                                <th>Departamento</th>
+                                <th>Direccion</th>
+                                <th>Telefono</th>
+                                <th>Celular</th>
+                                <th>Correo</th>
                                 <th>Cta Global Empl</th>
                                 <th>Sel</th>
 
@@ -100,62 +113,65 @@
                             <div class="card-body">
                                 <form>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="txtRFC" data-value="txtrfc"
-                                               placeholder="id Empleado" maxlength="13">
+                                        <input type="text" class="form-control form-control-user" id="txtidDepto" data-value="txtidDepto"
+                                               placeholder="iddepto" disabled="true">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="txtcatloc" data-value="txtcatloc"
+                                               placeholder="ctaloc" >
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
-                                               placeholder="ID Empleado local">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="sDescripcion"
+                                        <input type="text" class="form-control form-control-user" id="txtNombre"
                                                placeholder="Nombre">
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id="sDescripcion"
-                                               placeholder="Apellido Paterno">
+                                        <input type="text" class="form-control form-control-user" id="txtApellpat"
+                                               placeholder="ApellidoPaterno">
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
-                                               placeholder="Apellido Materno">
+                                        <input type="text" class="form-control form-control-user" id="txtapellmat"
+                                               placeholder="ApellidoMaterno">
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-5">
+                                            <select class="form-select form-control form-control-user" aria-label="Default select example" id="cmbDeptos" onchange="mostrarValor(this.options[this.selectedIndex].innerHTML)">
+                                                <!--datos del perfil-->
+                                            </select>
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="text" class="form-control form-control-user" id="txtempdepto" placeholder="Depto" disabled="true">
+                                        </div>
+
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
-                                               placeholder="Departamento">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
-                                               placeholder="Area">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
+                                        <input type="text" class="form-control form-control-user" id="txtdir"
                                                placeholder="Dirección">
                                     </div>
+
                                     <div class="mb-3">
-                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
+                                        <input type="text" class="form-control form-control-user" id="txttelf"
                                                placeholder="Telefono">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-user" id="txtcel"
+                                               placeholder="Celular">
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="number" class="form-control form-control-user" id=",sDescripcion"
-                                               placeholder="Celular">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="email" class="form-control form-control-user" id=",sDescripcion"
+                                        <input type="text" class="form-control form-control-user" id="txtema"
                                                placeholder="Email">
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control form-control-user" id=",sDescripcion"
-                                               placeholder="ID Empleado global">
+                                        <input type="text" class="form-control form-control-user" id="txtempgl"
+                                               placeholder="Cuentaglobal">
                                     </div>
+
                                 </form>
 
                             </div>
@@ -168,7 +184,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='AddEmpl(this)'>Guardar</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" id="btnGUarda" onclick='AgregEmpl(this)'>Guardar</button>
             </div>
         </div>
     </div>
