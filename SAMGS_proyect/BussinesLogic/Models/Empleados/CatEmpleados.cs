@@ -22,9 +22,11 @@ namespace BussinesLogic.Models.Empleados
         }
 
 
+        public static List<Deptos> BSLEmplDepto()
+        {
+            return DataBase.Modelos.Departamentos.DepartamentosProc.lstdempl();
 
-
-
+        }
 
 
 
