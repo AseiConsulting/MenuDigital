@@ -4,7 +4,7 @@
     let counter = 1;
 
     $.ajax({
-        url: '/Perfil/LstPerfiles',
+        url: '/CatPerfil/LstPerfiles',
         type: 'GET',
         data: {
         },
@@ -41,18 +41,18 @@ function agregaAlPrincipal() {
 
 
 //Carga datos al selcionar el grid
-function mostdatDepto(button) {
-    var txtidperfil;
-    var txtNompf;
+function mostdatPerfil(button) {
+    var txtidperf;
+   
 
 
     $("table tbody tr").click(function () {
         txtidperfil = $(this).find("td:eq(0)").text();
-        Descripcion = $(this).find("td:eq(1)").text();
+        DescPrfil = $(this).find("td:eq(1)").text();
 
 
-        $("#txtidperfil").val(txtidperfil);
-        $("#txtdescrippf").val(Descripcion);
+        $("#txtidperf").val(txtidperfil);
+        $("#txtdescrippf").val(DescPrfil);
 
 
     });
@@ -61,19 +61,19 @@ function mostdatDepto(button) {
 
 function AgregPerf() {
     var opcion = confirm("Desea Guardar los cambios?");
-    var iddepto = 0;
-    var descripcion = "";
+    var id_pfil = 0;
+    var descripcionpf = "";
 
 
     if (opcion == true) {
-        iddepto = $("#txtiddepto").val();
-        descripcion = $("#txtdescripcion").val();
+        id_pfil = $("#txtidperf").val();
+        descripcionpf = $("#txtdescrippf").val();
 
         $.ajax({
-            url: '/Deptos/updateDeptos', //le envio el dato del evento en el controles que va a ejecutar
+            url: '/CatPerfil/updatePerfil', //le envio el dato del evento en el controles que va a ejecutar
             data: {
-                "idDepto": iddepto,
-                "ddescripcion": descripcion,
+                "idPerfil": id_pfil,
+                "pfdescripcion": descripcionpf,
 
             },
             type: 'GET',
@@ -93,8 +93,9 @@ function AgregPerf() {
     };
 };
 function limpiadatos() {
-    var txtiddepto = "";
-    var txtNom = "";
-    $("#txtiddepto").val(txtiddepto);
-    $("#txtdescripcion").val(txtNom);
+    var txtidperf = "";
+    var txtDescpf = "";
+
+    $("#txtidperf").val(txtidperf);
+    $("#txtdescrippf").val(txtDescpf);
 };

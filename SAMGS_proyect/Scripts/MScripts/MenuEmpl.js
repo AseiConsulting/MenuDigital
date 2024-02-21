@@ -1,23 +1,32 @@
 ﻿function obtenerEmpl() {
     agregaAlPrincipal();
-    const tabla = new DataTable('#dataTable');
+    const dtbEmpl = new DataTable('#dtbEmpl');
     let counter = 1;
 
     $.ajax({
-        url: '/Empleado/LstEmpl',
+        url: '/CatEmpl/lstdempl',
         type: 'GET',
         data: {
         },
 
         dataType: 'json',
         success: function (response) {
-            var deptos = JSON.stringify(response);
+            var empleado = JSON.stringify(response);
             for (var i = 0; i < response.data.length; i++) {
-                tabla.row
+                dtbEmpl.row
                     .add([
-                        response.data[i].idDepto,
-                        response.data[i].ddescripcion,
-                        "<button type='button' class='btn btn-success btn-circle btn-sm fas fa-check' data-toggle='modal' data-target='#deptosModal' onclick='mostdatDepto(this)'></button>"
+                        response.data[i].idcons,
+                        response.data[i].ctaloc,
+                        response.data[i].nombre,
+                        response.data[i].appat,
+                        response.data[i].apmat,
+                        response.data[i].emdepto,
+                        response.data[i].direcc,
+                        response.data[i].tel,
+                        response.data[i].cel,
+                        response.data[i].email,
+                        response.data[i].ctausglo,
+                        "<button type='button' class='btn btn-success btn-circle btn-sm fas fa-check' data-toggle='modal' data-target='#emplModal' onclick='mostdatEmpl(this)'></button>"
                     ])
                     .draw(false);
 
@@ -40,39 +49,100 @@ function agregaAlPrincipal() {
 }
 
 //Carga datos al selcionar el grid
-function mostdatDepto(button) {
-    var txtiddepto;
-    var txtNom;
 
+function mostdatEmpl(button) {
+    var idDep;
+    var ctaloc;
+    var Nombre;
+    var ApellidoPaterno;
+    var ApellidoMaterno;
+    var Depto;
+    var Dirección;
+    var Telefono;
+    var Celular;
+    var Email;
+    var Cuentaglobal;
 
     $("table tbody tr").click(function () {
-        txtid = $(this).find("td:eq(0)").text();
-        Descripcion = $(this).find("td:eq(1)").text();
+        idDep = $(this).find("td:eq(0)").text();
+        ctaloc = $(this).find("td:eq(1)").text();
+        Nombre = $(this).find("td:eq(2)").text();
+        ApellidoPaterno = $(this).find("td:eq(3)").text();
+        ApellidoMaterno = $(this).find("td:eq(4)").text();
+        Depto = $(this).find("td:eq(5)").text();
+        Dirección = $(this).find("td:eq(6)").text();
+        Telefono = $(this).find("td:eq(7)").text();
+        Celular = $(this).find("td:eq(8)").text();
+        Email = $(this).find("td:eq(9)").text();
+        Cuentaglobal = $(this).find("td:eq(10)").text();
 
-
-        $("#txtiddepto").val(txtid);
-        $("#txtdescripcion").val(Descripcion);
-
+        $("#txtidDepto").val(idDep); 
+        $("#txtcatloc").val(ctaloc);
+        $("#txtNombre").val(Nombre);
+        $("#txtApellpat").val(ApellidoPaterno);
+        $("#txtapellmat").val(ApellidoMaterno);
+        $("#txtempdepto").val(Depto);
+        $("#txtdir").val(Dirección);
+        $("#txttelf").val(Telefono);
+        $("#txtcel").val(Celular);
+        $("#txtema").val(Email);
+        $("#txtempgl").val(Cuentaglobal);
 
     });
-};
+        
+    
+    
+    
+
+}
 
 
-function AgregDepto() {
+
+
+function AgregEmpl() {
     var opcion = confirm("Desea Guardar los cambios?");
-    var iddepto = 0;
-    var descripcion = "";
-
+    var i_d = 0;
+    var CTA_USU_LOCAL = "";
+    var NOMBRE = "";
+    var APATERNO = "";
+    var APMATERNO = "";
+    var emdepto = "";
+    var DIRECCION = "";
+    var TELEFONO = "";
+    var CELULAR = "";
+    var EMAIL = "";
+    var CTA_USU_GLOBAL = "";
 
     if (opcion == true) {
-        iddepto = $("#txtiddepto").val();
-        descripcion = $("#txtdescripcion").val();
+        i_d = $("#txtidDepto").val();
+        CTA_USU_LOCAL = $("#txtcatloc").val();
+        NOMBRE = $("#txtNombre").val();
+        APATERNO = $("#txtApellpat").val();
+        APMATERNO = $("#txtapellmat").val();
+        emdepto = $("#txtempdepto").val();
+        DIRECCION = $("#txtdir").val();
+        TELEFONO = $("#txttelf").val();
+        CELULAR = $("#txtcel").val();
+        EMAIL = $("#txtema").val();
+        CTA_USU_GLOBAL = $("#txtempgl").val();
+        
+
 
         $.ajax({
-            url: '/Deptos/updateDeptos', //le envio el dato del evento en el controles que va a ejecutar
+            url: '/CatEmpl/updateEmpl', //le envio el dato del evento en el controles que va a ejecutar
             data: {
-                "idDepto": iddepto,
-                "ddescripcion": descripcion,
+                "idcons":i_d,
+                "ctaloc":CTA_USU_LOCAL,
+                "nombre":NOMBRE,
+                "appat": APATERNO,
+                "apmat": APMATERNO,
+                "emdepto":emdepto,
+                "direcc":DIRECCION,
+                "tel":   TELEFONO,
+                "cel":   CELULAR,
+                "email":  EMAIL,
+                "ctausglo": CTA_USU_GLOBAL,
+
 
             },
             type: 'GET',
@@ -92,8 +162,58 @@ function AgregDepto() {
     };
 };
 function limpiadatos() {
-    var txtiddepto = "";
+    var txttxtidDp = "";
+    var txtCatloc = "";
     var txtNom = "";
-    $("#txtiddepto").val(txtiddepto);
-    $("#txtdescripcion").val(txtNom);
+    var txtAppa = "";
+    var txtApma = "";
+    var txtDi = "";
+    var txtTlf = "";
+    var txtCel = "";
+    var txtEmi = "";
+    var txtCtgl = "";
+
+
+    $("#txtidDepto").val(txttxtidDp);
+    $("#txtcatloc").val(txtCatloc);
+    $("#txtNombre").val(txtNom);
+    $("#txtApellpat").val(txtAppa);
+    $("#txtapellmat").val(txtApma);
+    $("#txtdir").val(txtDi);
+    $("#txttelf").val(txtTlf);
+    $("#txtcel").val(txtCel);
+    $("#txtema").val(txtEmi);
+    $("#txtempgl").val(txtCtgl);
+    
+};
+
+function obtenerDepto(number) {
+    //var cmblst = document.getElementById('cmbPerfil');
+    var i = 1;
+    $.ajax({
+        url: "/CatEmpl/LstDepartamentos",
+        data: {
+            "id": 1
+        },
+        type: 'GET',
+        dataType: 'Json',
+        success: function (response) {
+            $("#cmbDeptos")
+                .empty()
+                .append($("<option></option>")
+                    .val("0")
+                    .html("Seleccione Depto  al que pertenecera Depto:"));
+            for (var i = 0; i < response.data.length; i++) {
+                $("#cmbDeptos").append($("<option></option>")
+                    .val(i)
+                    .html(response.data[i].ddescripcion));
+            };
+        },
+        error: function (jqXHR, status, error) {
+            alert('Hay un error al cargar los datos');
+        },
+        complete: function (jqXHR, status) {
+        }
+    });
+
 };
