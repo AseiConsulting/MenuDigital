@@ -1,5 +1,4 @@
-﻿using BussinesLogic.Models.Depto;
-using BussinesLogic.Models.Perfiles;
+﻿using BussinesLogic.Models.Perfiles;
 using Modelos.Models;
 using System;
 using System.Collections.Generic;
